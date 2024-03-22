@@ -18,26 +18,23 @@ jobs:
 
       - name: Renew README.md
         run: |
-          DATE=$(date "+%Y/%m/%d %H:%M:%S")
-          echo "${DATE}" > README.md
-          git checkout --orphan tmp_work
-          git branch -d main
-          echo "DATE=${DATE}" >> $GITHUB_ENV
+            DATE=$(date "+%Y/%m/%d %H:%M:%S")
+            echo "${DATE}" > README.md
+            git checkout --orphan tmp_work
+            git branch -d main
+            echo "DATE=${DATE}" >> $GITHUB_ENV
 
       - name: Upload to repository
         uses: stefanzweifel/git-auto-commit-action@v4.16.0
         with:
           commit_message: Auto deploy by Github Actions, ${{ env.DATE }}
-          create_branch: true
           branch: main
           push_options: --force
-          github_token: ${{ secrets.MY_PERSONAL_ACCESS_TOKEN }}
+          github_token: ${{ secrets.REPO_ACCESS_TOKEN }} # Custom PAT for actions requiring higher permissions
 
       - name: Delete old workflow runs
         uses: MajorScruffy/delete-old-workflow-runs@v0.3.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.MY_PERSONAL_ACCESS_TOKEN }}
         with:
+          github_token: ${{ secrets.REPO_ACCESS_TOKEN }} # Use the same custom PAT as before
           repository: ${{ github.repository }}
           older-than-seconds: 3600
-
