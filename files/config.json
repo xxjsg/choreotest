@@ -80,7 +80,7 @@
                 }
             },
             "sniffing":{
-                "enabled":true,
+                "disable":false,
                 "destOverride":[
                     "http",
                     "tls",
@@ -108,7 +108,7 @@
                 }
             },
             "sniffing":{
-                "enabled":true,
+                "disable":false,
                 "destOverride":[
                     "http",
                     "tls",
@@ -136,7 +136,7 @@
                 }
             },
             "sniffing":{
-                "enabled":true,
+                "disable":false,
                 "destOverride":[
                     "http",
                     "tls",
@@ -165,7 +165,7 @@
                 }
             },
             "sniffing":{
-                "enabled":true,
+                "disable":false,
                 "destOverride":[
                     "http",
                     "tls",
